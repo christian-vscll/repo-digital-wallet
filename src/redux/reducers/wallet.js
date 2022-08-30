@@ -1,7 +1,4 @@
-import {
-  DATA_WALLET,
-  REQUEST_CURRENCIES,
-} from '../actions';
+import { ADD_EXPENSE, DATA_WALLET, REQUEST_CURRENCIES } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -13,6 +10,12 @@ const INITIAL_STATE = {
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: action.expenses,
+    };
+
   case REQUEST_CURRENCIES:
     return {
       ...state,

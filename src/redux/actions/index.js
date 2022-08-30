@@ -14,6 +14,12 @@ export const dataWallet = (state) => ({
   idToEdit: state.idToEdit,
 });
 
+export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const addExpense = (expenses) => ({
+  type: ADD_EXPENSE,
+  expenses,
+});
+
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const requestCurrencies = (currencies) => ({
   type: REQUEST_CURRENCIES,

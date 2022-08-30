@@ -3,11 +3,17 @@
   display: flex;
   flex-direction: row;
   height: 100%;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .h3 {
-  border-color: brown;
-  border-width: 5px;
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.despesaTotal {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }

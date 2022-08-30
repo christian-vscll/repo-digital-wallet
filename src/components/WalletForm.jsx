@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import getCurrencies from '../services/currencyAPI';
+import { getCurrencies, getExchangeRates } from '../services/currencyAPI';
 import './WalletForm.css';
+import { addExpense } from '../redux/actions';
 
 class WalletForm extends Component {
-  state = { currencies: '' };
+  state = {
+    currencies: '',
+    inputValue: '',
+    inputDescription: '',
+    selectCurrency: 'USD',
+    selectMethod: 'Dinheiro',
+    selectCategory: 'Alimentação',
+  };
 
   componentDidMount() {
     this.fetchCurrency();
@@ -16,34 +24,108 @@ class WalletForm extends Component {
     await getCurrencies(dispatch);
 
     const { wallet } = this.props;
+    this.setState({ currencies: wallet.currencies });
+  };
+
+  handleButton = async () => {
+    const { wallet } = this.props;
+    const id = wallet.expenses.length;
+    const exchangeRates = await getExchangeRates();
+
+    const {
+      inputValue,
+      inputDescription,
+      selectCurrency,
+      selectMethod,
+      selectCategory,
+    } = this.state;
+
+    const objToSave = {
+      id,
+      value: inputValue,
+      currency: selectCurrency,
+      method: selectMethod,
+      tag: selectCategory,
+      description: inputDescription,
+      exchangeRates,
+    };
+
+    this.saveToStore(objToSave);
+  };
+
+  saveToStore = (obj) => {
+    const { dispatch, wallet } = this.props;
+    wallet.expenses.push(obj);
+    dispatch(addExpense(wallet.expenses));
+
     this.setState({
-      currencies: wallet.currencies,
+      inputValue: '',
+      inputDescription: '',
+      selectCurrency: 'USD',
+      selectMethod: 'Dinheiro',
+      selectCategory: 'Alimentação',
     });
   };
 
+  handleChanges = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  };
+
   render() {
-    const { currencies } = this.state;
-    console.log(currencies);
+    const {
+      inputValue,
+      inputDescription,
+      selectCurrency,
+      selectMethod,
+      selectCategory,
+      currencies,
+    } = this.state;
+    console.log(this.state);
+
     return (
       <form className="formWallet">
-        <label className="labelFormWallet" htmlFor="inputValue">
+        <label
+          className="labelFormWallet"
+          htmlFor="inputValue"
+        >
           Valor
-          <input type="number" name="inputValue" data-testid="value-input" />
+          <input
+            type="number"
+            name="inputValue"
+            data-testid="value-input"
+            onChange={ this.handleChanges }
+            value={ inputValue }
+          />
         </label>
 
-        <label className="labelFormWallet" htmlFor="inputDescription">
+        <label
+          className="labelFormWallet"
+          htmlFor="inputDescription"
+        >
           Descrição
-          <input type="text" name="inputDescription" data-testid="description-input" />
+          <input
+            type="text"
+            name="inputDescription"
+            data-testid="description-input"
+            onChange={ this.handleChanges }
+            value={ inputDescription }
+          />
         </label>
 
         {
           currencies !== '' && (
-            <label className="labelFormWallet" htmlFor="selectCurrency">
+            <label
+              className="labelFormWallet"
+              htmlFor="selectCurrency"
+            >
               Moeda
               <select
                 className="select"
                 name="selectCurrency"
                 data-testid="currency-input"
+                onChange={ this.handleChanges }
+                value={ selectCurrency }
               >
                 {
                   currencies.map((moeda) => (
@@ -55,18 +137,36 @@ class WalletForm extends Component {
           )
         }
 
-        <label className="labelFormWallet" htmlFor="selectMethod">
+        <label
+          className="labelFormWallet"
+          htmlFor="selectMethod"
+        >
           Método de pagamento
-          <select className="select" name="selectMethod" data-testid="method-input">
+          <select
+            onChange={ this.handleChanges }
+            value={ selectMethod }
+            className="select"
+            name="selectMethod"
+            data-testid="method-input"
+          >
             <option>Dinheiro</option>
             <option>Cartão de crédito</option>
             <option>Cartão de débito</option>
           </select>
         </label>
 
-        <label className="labelFormWallet" htmlFor="selectCategory">
-          Método de pagamento
-          <select className="select" name="selectCategory" data-testid="tag-input">
+        <label
+          className="labelFormWallet"
+          htmlFor="selectCategory"
+        >
+          Categoria
+          <select
+            onChange={ this.handleChanges }
+            value={ selectCategory }
+            className="select"
+            name="selectCategory"
+            data-testid="tag-input"
+          >
             <option>Alimentação</option>
             <option>Lazer</option>
             <option>Trabalho</option>
@@ -74,6 +174,10 @@ class WalletForm extends Component {
             <option>Saúde</option>
           </select>
         </label>
+
+        <button type="button" onClick={ this.handleButton }>
+          Adicionar despesa
+        </button>
       </form>
     );
   }
