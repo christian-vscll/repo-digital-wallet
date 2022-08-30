@@ -1,18 +1,20 @@
-#formWallet {
-  width: 100%; height: 100%;
-  padding-top: 10px; padding-bottom: 10px;
+.formWallet {
+  background-color: rgb(160, 125, 255);
   display: flex;
   flex-direction: row;
+  height: 100%;
   justify-content: space-evenly;
-  background-color: rgb(160, 125, 255);
   margin-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 100%;
 }
 
 .labelFormWallet {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 200px;
 }
 

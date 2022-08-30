@@ -29,7 +29,7 @@ class Header extends Component {
     const { email, despesaTotal } = this.state;
     // console.log(email, currencies, expenses, editor, idToEdit);
     return (
-      <div id="headerWallet">
+      <div className="headerWallet">
         <h3 className="h3" data-testid="email-field">
           {`Email: ${email}`}
         </h3>

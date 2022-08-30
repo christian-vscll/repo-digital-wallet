@@ -1,21 +1,22 @@
-#containerLogin {
-  width: 100%; height: 690px;
+.containerLogin {
+  align-items: center;
   background-color: rgb(203, 203, 203);
   display: flex;
   flex-direction: column;
+  height: 690px;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
-#titleLogin {
+.titleLogin {
   font-size: 40px;
   margin: 10px;
 }
 
 .input {
+  height: 30px;
   margin: 2px;
   width: 200px;
-  height: 30px;
 }
 
 .botaoEntrar {
