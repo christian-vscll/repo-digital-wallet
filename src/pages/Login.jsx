@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { userEmail } from '../redux/actions';
+import './Login.css';
 
 class Login extends React.Component {
   state = {
@@ -34,12 +35,13 @@ class Login extends React.Component {
     const MIN_LEN_PSW = 6;
 
     return (
-      <div>
-        <h2>Login</h2>
+      <div id="container">
+        <h2 id="title">Login</h2>
         <input
           type="email"
           data-testid="email-input"
           name="inputEmail"
+          className="inputEmail input"
           value={ inputEmail }
           onChange={ this.handleChange }
         />
@@ -47,11 +49,13 @@ class Login extends React.Component {
           type="password"
           data-testid="password-input"
           name="inputSenha"
+          className="inputSenha input"
           value={ inputSenha }
           onChange={ this.handleChange }
         />
         <button
           type="button"
+          className="botaoEntrar input"
           disabled={ !(
             this.validateEmail(inputEmail) !== null && inputSenha.length >= MIN_LEN_PSW
           ) }
