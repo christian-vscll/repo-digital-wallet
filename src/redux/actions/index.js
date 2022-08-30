@@ -13,3 +13,11 @@ export const dataWallet = (state) => ({
   editor: state.editor,
   idToEdit: state.idToEdit,
 });
+
+export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
+export const requestCurrencies = (currencies) => ({
+  type: REQUEST_CURRENCIES,
+  currencies,
+});
+// export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
+// export const FAILED_REQUEST_CURRENCIES = 'FAILED_REQUEST_CURRENCIES';

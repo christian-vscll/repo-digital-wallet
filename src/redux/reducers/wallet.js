@@ -1,3 +1,8 @@
+import {
+  DATA_WALLET,
+  REQUEST_CURRENCIES,
+} from '../actions';
+
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -7,8 +12,25 @@ const INITIAL_STATE = {
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
-  console.log(action);
-  return state;
+  switch (action.type) {
+  case REQUEST_CURRENCIES:
+    return {
+      ...state,
+      currencies: action.currencies,
+    };
+
+  case DATA_WALLET:
+    return {
+      ...state,
+      currencies: action.currencies,
+      expenses: action.expenses,
+      editor: action.editor,
+      idToEdit: action.idToEdit,
+    };
+
+  default:
+    return state;
+  }
 };
 
 export default wallet;

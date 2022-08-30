@@ -35,8 +35,8 @@ class Login extends React.Component {
     const MIN_LEN_PSW = 6;
 
     return (
-      <div id="container">
-        <h2 id="title">Login</h2>
+      <div id="containerLogin">
+        <h2 id="titleLogin">Login</h2>
         <input
           type="email"
           data-testid="email-input"

@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import './Header.css';
 
 class Header extends Component {
   state = {
     email: '',
-    currencies: '',
-    expenses: '',
-    editor: '',
-    idToEdit: '',
+    // currencies: '',
+    // expenses: '',
+    // editor: '',
+    // idToEdit: '',
     despesaTotal: 0,
   };
 
   componentDidMount() {
-    const { user, wallet } = this.props;
+    const { user } = this.props;
 
     this.setState({
       email: user.email,
-      currencies: wallet.currencies,
-      expenses: wallet.expenses,
-      editor: wallet.editor,
-      idToEdit: wallet.idToEdit,
+      // currencies: wallet.currencies,
+      // expenses: wallet.expenses,
+      // editor: wallet.editor,
+      // idToEdit: wallet.idToEdit,
     });
   }
 
   render() {
-    const { email, currencies, expenses, editor, idToEdit, despesaTotal } = this.state;
-    console.log(email, currencies, expenses, editor, idToEdit);
+    const { email, despesaTotal } = this.state;
+    // console.log(email, currencies, expenses, editor, idToEdit);
     return (
-      <div>
+      <div id="headerWallet">
         <h3 className="h3" data-testid="email-field">
           {`Email: ${email}`}
         </h3>
@@ -53,7 +54,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Header);
 
 Header.defaultProps = {
-  user: '', wallet: '',
+  user: '',
+  // wallet: '',
 };
 
 Header.propTypes = {
@@ -62,9 +64,9 @@ Header.propTypes = {
     PropTypes.number,
     PropTypes.object,
   ]),
-  wallet: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ]),
+  // wallet: PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.number,
+  //   PropTypes.object,
+  // ]),
 };
