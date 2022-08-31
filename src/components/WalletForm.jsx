@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrencies, getExchangeRates } from '../services/currencyAPI';
 import './WalletForm.css';
-import { addExpense } from '../redux/actions';
+import { attExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -56,7 +56,7 @@ class WalletForm extends Component {
   saveToStore = (obj) => {
     const { dispatch, wallet } = this.props;
     wallet.expenses.push(obj);
-    dispatch(addExpense(wallet.expenses));
+    dispatch(attExpense(wallet.expenses));
 
     this.setState({
       inputValue: '',

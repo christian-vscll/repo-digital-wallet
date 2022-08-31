@@ -5,16 +5,10 @@ import './Table.css';
 import TableRow from './TableRow';
 
 class Table extends Component {
-  state = { expenses: [] };
-
-  componentDidMount() {
-    const { wallet } = this.props;
-    this.setState({ expenses: wallet.expenses });
-  }
-
   render() {
-    const { expenses } = this.state;
-    const despesas = expenses;
+    const { wallet } = this.props;
+    const despesas = wallet.expenses;
+    console.log(despesas);
     return (
       <table id="mainTable">
         <thead>
@@ -48,29 +42,7 @@ class Table extends Component {
             </th>
           </tr>
         </thead>
-        {/* <tbody> */}
-        {
-          expenses !== [] && (
-            <TableRow expenses={ despesas } />
-            // despesas.map((despesa) => {
-            //   const moeda = despesa.currency;
-            //   const { nameOfCoin } = despesa.exchangeRates[moeda];
-            //   return (
-            //     <tr key={ despesa }>
-            //       <td>{despesa.description}</td>
-            //       <td>{despesa.tag}</td>
-            //       <td>{despesa.method}</td>
-            //       <td>{despesa.value}</td>
-            //       <td>{nameOfCoin}</td>
-            //       {/* <td>{ despesa.cambio utilizado }</td>
-            //       <td>{ despesa.valor convertido }</td>
-            //       <td>{ despesa.moeda de conversão }</td> */}
-            //     </tr>
-            //   );
-            // })
-          )
-        }
-        {/* </tbody> */}
+        <TableRow />
       </table>
     );
   }

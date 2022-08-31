@@ -14,9 +14,9 @@ export const dataWallet = (state) => ({
   idToEdit: state.idToEdit,
 });
 
-export const ADD_EXPENSE = 'ADD_EXPENSE';
-export const addExpense = (expenses) => ({
-  type: ADD_EXPENSE,
+export const ATT_EXPENSE = 'ATT_EXPENSE';
+export const attExpense = (expenses) => ({
+  type: ATT_EXPENSE,
   expenses,
 });
 
