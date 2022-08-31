@@ -81,7 +81,7 @@ class WalletForm extends Component {
       selectCategory,
       currencies,
     } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <form className="formWallet">
