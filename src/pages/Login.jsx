@@ -56,6 +56,7 @@ class Login extends React.Component {
         <button
           type="button"
           className="botaoEntrar input"
+          data-testid="button-entrar"
           disabled={ !(
             this.validateEmail(inputEmail) !== null && inputSenha.length >= MIN_LEN_PSW
           ) }
