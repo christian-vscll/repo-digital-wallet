@@ -24,12 +24,22 @@ class WalletForm extends Component {
     await getCurrencies(dispatch);
 
     const { wallet } = this.props;
+    // console.log(wallet);
     this.setState({ currencies: wallet.currencies });
   };
 
   handleButton = async () => {
     const { wallet } = this.props;
-    const id = wallet.expenses.length;
+    const { expenses } = wallet;
+
+    let id;
+    if (expenses.length === 0) id = 0;
+    else {
+      const ultimaDespesa = expenses[expenses.length - 1];
+      id = ultimaDespesa.id + 1;
+    }
+
+    // const id = ultimaDespesa.id + 1;
     const exchangeRates = await getExchangeRates();
 
     const {

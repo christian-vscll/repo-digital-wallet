@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
+// import { PropTypes } from 'prop-types';
+// import { connect } from 'react-redux';
 import './Table.css';
 import TableRow from './TableRow';
 
 class Table extends Component {
   render() {
-    const { wallet } = this.props;
-    const despesas = wallet.expenses;
-    console.log(despesas);
+    // const { wallet } = this.props;
+    // const despesas = wallet.expenses;
+    // console.log(despesas);
     return (
       <table id="mainTable">
         <thead>
@@ -48,19 +48,20 @@ class Table extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { wallet } = state;
-  return { wallet };
-};
+// const mapStateToProps = (state) => {
+//   const { wallet } = state;
+//   return { wallet };
+// };
 
-export default connect(mapStateToProps)(Table);
+export default Table;
+// export default connect(mapStateToProps)(Table);
 
-Table.defaultProps = { wallet: '' };
+// Table.defaultProps = { wallet: '' };
 
-Table.propTypes = {
-  wallet: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ]),
-};
+// Table.propTypes = {
+//   wallet: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.number,
+//     PropTypes.object,
+//   ]),
+// };

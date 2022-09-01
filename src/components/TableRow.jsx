@@ -7,12 +7,7 @@ import './Table.css';
 class TableRow extends React.Component {
   handleDelete = (despesas, id) => {
     const { dispatch } = this.props;
-    // const despesas = wallet.expenses;
     const filteredExpenses = despesas.filter((despesa) => despesa.id !== id);
-    console.log(filteredExpenses);
-    // const newExpenses = filteredExpenses.map((despesa, index) => {
-    //   despesa.id = index; return despesa;
-    // });
     dispatch(attExpense(filteredExpenses));
   };
 
@@ -28,11 +23,9 @@ class TableRow extends React.Component {
             const moeda = despesa.currency;
             const nameOfCoin = despesa.exchangeRates[moeda].name;
             const cambio = parseFloat(despesa.exchangeRates[moeda].ask);
-            // console.log(index, despesa.id, despesa);
             const keyAleatoria = (Math.random() * MAX);
             return (
               <tr key={ keyAleatoria } className="tableRow">
-                { console.log(despesas.length) }
                 <td className="tableCell">{despesa.description}</td>
                 <td className="tableCell">{despesa.tag}</td>
                 <td className="tableCell">{despesa.method}</td>

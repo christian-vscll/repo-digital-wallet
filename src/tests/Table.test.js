@@ -6,6 +6,6 @@ import Table from '../components/Table';
 test('1 - Se a div principal aparece na tela', () => {
   renderWithRouterAndRedux(<Table />);
 
-  const divPrincipal = screen.getByText('Table');
+  const divPrincipal = screen.getByText('Tag');
   expect(divPrincipal).toBeInTheDocument();
 });
