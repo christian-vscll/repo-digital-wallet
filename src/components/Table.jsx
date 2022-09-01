@@ -10,7 +10,7 @@ class Table extends Component {
     // const despesas = wallet.expenses;
     // console.log(despesas);
     return (
-      <table id="mainTable">
+      <table className="mainTable">
         <thead>
           <tr className="tableHead">
             <th className="tableHeader">
